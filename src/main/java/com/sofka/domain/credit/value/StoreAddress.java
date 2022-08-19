@@ -3,11 +3,11 @@ package com.sofka.domain.credit.value;
 import co.com.sofka.domain.generic.ValueObject;
 import java.util.Objects;
 
-public class StoreName implements ValueObject<String> {
+public class StoreAddress implements ValueObject<String> {
 
     private final String value;
 
-    public StoreName(String value) {
+    public StoreAddress(String value) {
         this.value = Objects.requireNonNull(value);
     }
 
