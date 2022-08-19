@@ -5,6 +5,7 @@ public enum PlaceTypeE {
     PSE,
     BALOTO,
     EFECTY,
-    PAYU
+    PAYU,
+    GANA
 
 }

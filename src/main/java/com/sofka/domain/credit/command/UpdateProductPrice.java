@@ -5,13 +5,13 @@ import com.sofka.domain.credit.value.CreditID;
 import com.sofka.domain.credit.value.Price;
 import com.sofka.domain.credit.value.ProductID;
 
-public class UpdatePrice extends Command {
+public class UpdateProductPrice extends Command {
 
     private final CreditID creditID;
     private final ProductID entityID;
     private final Price price;
 
-    public UpdatePrice(CreditID creditID, ProductID entityID, Price price) {
+    public UpdateProductPrice(CreditID creditID, ProductID entityID, Price price) {
         this.creditID = creditID;
         this.entityID = entityID;
         this.price = price;

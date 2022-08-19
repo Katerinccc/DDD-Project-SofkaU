@@ -2,20 +2,17 @@ package com.sofka.domain.customer.event;
 
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.domain.customer.value.AddressID;
-import com.sofka.domain.customer.value.City;
 import com.sofka.domain.customer.value.Nomenclature;
 
-public class AddressAdded extends DomainEvent {
+public class AddressNomenclatureUpdated extends DomainEvent {
 
     private final AddressID addressID;
     private final Nomenclature nomenclature;
-    private final City city;
 
-    public AddressAdded(String type, AddressID addressID, Nomenclature nomenclature, City city) {
-        super("sofka.domain.customer.AddressAdded");
+    public AddressNomenclatureUpdated(AddressID addressID, Nomenclature nomenclature) {
+        super("sofka.domain.customer.AddressNomenclatureUpdated");
         this.addressID = addressID;
         this.nomenclature = nomenclature;
-        this.city = city;
     }
 
     public AddressID getAddressID() {
@@ -24,9 +21,5 @@ public class AddressAdded extends DomainEvent {
 
     public Nomenclature getNomenclature() {
         return nomenclature;
-    }
-
-    public City getCity() {
-        return city;
     }
 }

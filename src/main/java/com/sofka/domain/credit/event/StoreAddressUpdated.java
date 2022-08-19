@@ -3,19 +3,16 @@ package com.sofka.domain.credit.event;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.domain.credit.value.StoreAddress;
 import com.sofka.domain.credit.value.StoreID;
-import com.sofka.domain.credit.value.StoreName;
 
-public class StoreAdded extends DomainEvent {
+public class StoreAddressUpdated extends DomainEvent {
 
     private final StoreID storeId;
     private final StoreAddress storeAddress;
-    private final StoreName storeName;
 
-    public StoreAdded(StoreID storeId, StoreAddress storeAddress, StoreName storeName) {
-        super("sofka.domain.credit.StoreAdded");
+    public StoreAddressUpdated(StoreID storeId, StoreAddress storeAddress) {
+        super("sofka.domain.credit.StoreAddressUpdated");
         this.storeId = storeId;
         this.storeAddress = storeAddress;
-        this.storeName = storeName;
     }
 
     public StoreID getStoreId() {
@@ -24,9 +21,5 @@ public class StoreAdded extends DomainEvent {
 
     public StoreAddress getStoreAddress() {
         return storeAddress;
-    }
-
-    public StoreName getStoreName() {
-        return storeName;
     }
 }

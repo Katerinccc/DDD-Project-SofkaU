@@ -5,13 +5,13 @@ import com.sofka.domain.payment.value.Location;
 import com.sofka.domain.payment.value.PaymentID;
 import com.sofka.domain.payment.value.PaymentPlaceID;
 
-public class UpdateLocation extends Command {
+public class UpdatePlaceLocation extends Command {
 
     private final PaymentID paymentID;
     private final PaymentPlaceID entityId;
     private final Location location;
 
-    public UpdateLocation(PaymentID paymentID, PaymentPlaceID entityId, Location location) {
+    public UpdatePlaceLocation(PaymentID paymentID, PaymentPlaceID entityId, Location location) {
         this.paymentID = paymentID;
         this.entityId = entityId;
         this.location = location;
