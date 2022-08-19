@@ -2,22 +2,19 @@ package com.sofka.domain.customer.command;
 
 import co.com.sofka.domain.generic.Command;
 import com.sofka.domain.customer.value.AddressID;
-import com.sofka.domain.customer.value.City;
 import com.sofka.domain.customer.value.CustomerID;
 import com.sofka.domain.customer.value.Nomenclature;
 
-public class AddAddress extends Command {
+public class UpdateAddressNomenclature extends Command {
 
     private final CustomerID customerId;
     private final AddressID entityId;
     private final Nomenclature nomenclature;
-    private final City city;
 
-    public AddAddress(CustomerID customerId, AddressID entityId, Nomenclature nomenclature, City city) {
+    public UpdateAddressNomenclature(CustomerID customerId, AddressID entityId, Nomenclature nomenclature) {
         this.customerId = customerId;
         this.entityId = entityId;
         this.nomenclature = nomenclature;
-        this.city = city;
     }
 
     public CustomerID getCustomerId() {
@@ -30,9 +27,5 @@ public class AddAddress extends Command {
 
     public Nomenclature getNomenclature() {
         return nomenclature;
-    }
-
-    public City getCity() {
-        return city;
     }
 }
