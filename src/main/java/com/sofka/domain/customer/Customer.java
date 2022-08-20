@@ -4,6 +4,7 @@ import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.domain.customer.event.AddressAdded;
 import com.sofka.domain.customer.event.CustomerCreated;
+import com.sofka.domain.customer.event.CustomerMessageSent;
 import com.sofka.domain.customer.event.ReferenceAdded;
 import com.sofka.domain.customer.event.ReferenceDeleted;
 import com.sofka.domain.customer.value.AddressID;
@@ -58,6 +59,11 @@ public class Customer extends AggregateEvent<CustomerID> {
     public void deleteReference(ReferenceID entityId) {
         Objects.requireNonNull(entityId);
         appendChange(new ReferenceDeleted(entityId)).apply();
+    }
+
+    public void sendTextMessageToCustomer(String message){
+        Objects.requireNonNull(message);
+        appendChange(new CustomerMessageSent(message)).apply();
     }
 
 }

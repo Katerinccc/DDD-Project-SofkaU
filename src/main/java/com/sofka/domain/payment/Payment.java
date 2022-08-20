@@ -3,6 +3,7 @@ package com.sofka.domain.payment;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.domain.credit.value.CreditID;
+import com.sofka.domain.generic.event.NotificationSent;
 import com.sofka.domain.payment.event.PaymentMade;
 import com.sofka.domain.payment.event.PaymentMethodAdded;
 import com.sofka.domain.payment.event.PaymentPlaceAdded;
@@ -53,5 +54,10 @@ public class Payment extends AggregateEvent<PaymentID> {
         Objects.requireNonNull(placeType);
         Objects.requireNonNull(location);
         appendChange(new PaymentPlaceAdded(entityId, placeType, location)).apply();
+    }
+
+    public void notifyTreasuryArea(String message) {
+        Objects.requireNonNull(message);
+        appendChange(new NotificationSent(message)).apply();
     }
 }
