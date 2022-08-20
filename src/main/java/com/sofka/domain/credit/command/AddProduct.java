@@ -9,13 +9,13 @@ import com.sofka.domain.credit.value.ProductName;
 public class AddProduct extends Command {
 
     private final CreditID creditID;
-    private final ProductID entityID;
+    private final ProductID productID;
     private final ProductName productName;
     private final Price price;
 
-    public AddProduct(CreditID creditID, ProductID entityID, ProductName productName, Price price) {
+    public AddProduct(CreditID creditID, ProductID productID, ProductName productName, Price price) {
         this.creditID = creditID;
-        this.entityID = entityID;
+        this.productID = productID;
         this.productName = productName;
         this.price = price;
     }
@@ -24,8 +24,8 @@ public class AddProduct extends Command {
         return creditID;
     }
 
-    public ProductID getEntityID() {
-        return entityID;
+    public ProductID getproductID() {
+        return productID;
     }
 
     public ProductName getProductName() {

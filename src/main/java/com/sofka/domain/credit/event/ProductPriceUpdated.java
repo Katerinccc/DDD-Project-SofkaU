@@ -9,7 +9,7 @@ public class ProductPriceUpdated extends DomainEvent {
     private final ProductID productId;
     private final Price price;
 
-    public ProductPriceUpdated(String type, ProductID productId, Price price) {
+    public ProductPriceUpdated(ProductID productId, Price price) {
         super("sofka.domain.credit.ProductPriceUpdated");
         this.productId = productId;
         this.price = price;

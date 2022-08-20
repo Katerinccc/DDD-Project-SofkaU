@@ -3,10 +3,19 @@ package com.sofka.domain.credit;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.domain.credit.event.CreditCreated;
+import com.sofka.domain.credit.event.ProductAdded;
+import com.sofka.domain.credit.event.StoreAdded;
 import com.sofka.domain.credit.value.CreditID;
 import com.sofka.domain.credit.value.CreditValue;
+import com.sofka.domain.credit.value.Price;
+import com.sofka.domain.credit.value.ProductID;
+import com.sofka.domain.credit.value.ProductName;
+import com.sofka.domain.credit.value.StoreAddress;
+import com.sofka.domain.credit.value.StoreID;
+import com.sofka.domain.credit.value.StoreName;
 import com.sofka.domain.customer.value.CustomerID;
 import java.util.List;
+import java.util.Objects;
 
 public class Credit extends AggregateEvent<CreditID> {
 
@@ -31,4 +40,17 @@ public class Credit extends AggregateEvent<CreditID> {
         appendChange(new CreditCreated(customerID, creditValue)).apply();
     }
 
+    public void addProduct(ProductID entityId, ProductName name, Price price) {
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(price);
+        appendChange(new ProductAdded(entityId, name, price)).apply();
+    }
+
+    public void addStore(StoreID entityId, StoreAddress address, StoreName name) {
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(address);
+        Objects.requireNonNull(name);
+        appendChange(new StoreAdded(entityId, address, name)).apply();
+    }
 }

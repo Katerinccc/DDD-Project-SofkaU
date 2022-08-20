@@ -11,7 +11,7 @@ public class AddressAdded extends DomainEvent {
     private final Nomenclature nomenclature;
     private final City city;
 
-    public AddressAdded(String type, AddressID addressID, Nomenclature nomenclature, City city) {
+    public AddressAdded(AddressID addressID, Nomenclature nomenclature, City city) {
         super("sofka.domain.customer.AddressAdded");
         this.addressID = addressID;
         this.nomenclature = nomenclature;

@@ -9,7 +9,7 @@ public class AddressCityUpdated extends DomainEvent {
     private final AddressID addressID;
     private final City city;
 
-    public AddressCityUpdated(String type, AddressID addressID, City city) {
+    public AddressCityUpdated(AddressID addressID, City city) {
         super("sofka.domain.customer.AddressCityUpdated");
         this.addressID = addressID;
         this.city = city;
