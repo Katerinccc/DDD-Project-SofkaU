@@ -26,7 +26,7 @@ public class Customer extends AggregateEvent<CustomerID> {
         return customer;
     }
 
-    public Customer(CustomerID entityId,PhoneNumber phoneNumber, FullName fullName){
+    public Customer(CustomerID entityId, FullName fullName, PhoneNumber phoneNumber){
         super(entityId);
         appendChange(new CustomerCreated(fullName, phoneNumber)).apply();
     }
