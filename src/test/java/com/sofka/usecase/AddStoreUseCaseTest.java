@@ -5,7 +5,6 @@ import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
 import com.sofka.domain.credit.command.AddStore;
 import com.sofka.domain.credit.event.CreditCreated;
-import com.sofka.domain.credit.event.ProductAdded;
 import com.sofka.domain.credit.event.StoreAdded;
 import com.sofka.domain.credit.value.CreditID;
 import com.sofka.domain.credit.value.CreditValue;
