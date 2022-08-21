@@ -2,10 +2,6 @@ package com.sofka.domain.customer;
 
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
-import com.sofka.domain.credit.Product;
-import com.sofka.domain.credit.event.ProductNameUpdated;
-import com.sofka.domain.credit.value.ProductID;
-import com.sofka.domain.credit.value.ProductName;
 import com.sofka.domain.customer.event.AddressAdded;
 import com.sofka.domain.customer.event.AddressCityUpdated;
 import com.sofka.domain.customer.event.AddressNomenclatureUpdated;

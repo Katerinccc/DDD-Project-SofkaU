@@ -3,7 +3,6 @@ package com.sofka.usecase;
 import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.ResponseEvents;
 import co.com.sofka.business.support.TriggeredEvent;
-import com.sofka.domain.credit.Credit;
 import com.sofka.domain.credit.event.CreditCreated;
 import com.sofka.domain.credit.value.CreditID;
 import com.sofka.domain.customer.Customer;
@@ -15,7 +14,6 @@ public class NotifyCustomerCreditCreatedUseCase extends UseCase<TriggeredEvent<C
     public void executeUseCase(TriggeredEvent<CreditCreated> creditCreatedTriggeredEvent) {
 
         var event = creditCreatedTriggeredEvent.getDomainEvent();
-//        var credit = Credit.from(CreditID.of(event.aggregateRootId()), this.retrieveEvents());
         var customer = Customer.from(CustomerID.of(event.aggregateRootId()), this.retrieveEvents());
         var creditId = CreditID.of(event.aggregateRootId());
 
