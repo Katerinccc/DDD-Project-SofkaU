@@ -6,7 +6,11 @@ import com.sofka.domain.credit.value.CreditID;
 import com.sofka.domain.generic.event.NotificationSent;
 import com.sofka.domain.payment.event.PaymentMade;
 import com.sofka.domain.payment.event.PaymentMethodAdded;
+import com.sofka.domain.payment.event.PaymentMethodDeleted;
 import com.sofka.domain.payment.event.PaymentPlaceAdded;
+import com.sofka.domain.payment.event.PaymentTypeUpdated;
+import com.sofka.domain.payment.event.PlaceLocationUpdated;
+import com.sofka.domain.payment.event.PlaceTypeUpdated;
 import com.sofka.domain.payment.value.Description;
 import com.sofka.domain.payment.value.Location;
 import com.sofka.domain.payment.value.PaymentID;
@@ -15,7 +19,6 @@ import com.sofka.domain.payment.value.PaymentPlaceID;
 import com.sofka.domain.payment.value.PaymentType;
 import com.sofka.domain.payment.value.PaymentValue;
 import com.sofka.domain.payment.value.PlaceType;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -60,4 +63,28 @@ public class Payment extends AggregateEvent<PaymentID> {
         Objects.requireNonNull(message);
         appendChange(new NotificationSent(message)).apply();
     }
+
+    public void deletePaymentMethod(PaymentMethodID entityId){
+        Objects.requireNonNull(entityId);
+        appendChange(new PaymentMethodDeleted(entityId)).apply();
+    }
+
+    public void updatePaymentType(PaymentMethodID entityId, PaymentType paymentType){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(paymentType);
+        appendChange(new PaymentTypeUpdated(entityId, paymentType)).apply();
+    }
+
+    public void updateLocation(PaymentPlaceID entityId, Location location){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(location);
+        appendChange(new PlaceLocationUpdated(entityId, location)).apply();
+    }
+
+    public void updatePlaceType(PaymentPlaceID entityId, PlaceType placeType){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(placeType);
+        appendChange(new PlaceTypeUpdated(entityId, placeType)).apply();
+    }
+
 }

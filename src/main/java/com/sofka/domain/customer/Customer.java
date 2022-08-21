@@ -2,11 +2,18 @@ package com.sofka.domain.customer;
 
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
+import com.sofka.domain.credit.Product;
+import com.sofka.domain.credit.event.ProductNameUpdated;
+import com.sofka.domain.credit.value.ProductID;
+import com.sofka.domain.credit.value.ProductName;
 import com.sofka.domain.customer.event.AddressAdded;
+import com.sofka.domain.customer.event.AddressCityUpdated;
+import com.sofka.domain.customer.event.AddressNomenclatureUpdated;
 import com.sofka.domain.customer.event.CustomerCreated;
 import com.sofka.domain.customer.event.CustomerMessageSent;
 import com.sofka.domain.customer.event.ReferenceAdded;
 import com.sofka.domain.customer.event.ReferenceDeleted;
+import com.sofka.domain.customer.event.ReferencePhoneNumberUpdated;
 import com.sofka.domain.customer.value.AddressID;
 import com.sofka.domain.customer.value.City;
 import com.sofka.domain.customer.value.CustomerID;
@@ -17,6 +24,7 @@ import com.sofka.domain.generic.value.FullName;
 import com.sofka.domain.generic.value.PhoneNumber;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Customer extends AggregateEvent<CustomerID> {
 
@@ -34,6 +42,14 @@ public class Customer extends AggregateEvent<CustomerID> {
         Customer customer = new Customer(customerID);
         events.forEach(event -> customer.applyEvent(event));
         return customer;
+    }
+
+    public Optional<Reference> getReferenceById(ReferenceID referenceID){
+        return references.stream().filter(reference -> reference.identity().equals(referenceID)).findFirst();
+    }
+
+    public Optional<Address> getAddressById(AddressID addressID){
+        return addresses.stream().filter(address -> address.identity().equals(addressID)).findFirst();
     }
 
     public Customer(CustomerID entityId, FullName fullName, PhoneNumber phoneNumber){
@@ -64,6 +80,24 @@ public class Customer extends AggregateEvent<CustomerID> {
     public void sendTextMessageToCustomer(String message){
         Objects.requireNonNull(message);
         appendChange(new CustomerMessageSent(message)).apply();
+    }
+
+    public void updateAddressNomenclature(AddressID entityId, Nomenclature nomenclature){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(nomenclature);
+        appendChange(new AddressNomenclatureUpdated(entityId, nomenclature)).apply();
+    }
+
+    public void updateAddressCity(AddressID entityId, City city){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(city);
+        appendChange(new AddressCityUpdated(entityId, city)).apply();
+    }
+
+    public void updateReferencePhoneNumber(ReferenceID entityId, PhoneNumber phoneNumber){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(phoneNumber);
+        appendChange(new ReferencePhoneNumberUpdated(entityId, phoneNumber)).apply();
     }
 
 }
